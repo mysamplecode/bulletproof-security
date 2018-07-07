@@ -1,0 +1,34 @@
+# BULLETPROOF PRO UPLOADS FOLDER .HTACCESS     
+# 
+# Allow,Deny
+# First, all Allow directives are evaluated. At least one must match, or the request is rejected.
+# Next, all Deny directives are evaluated. If any matches, the request is rejected.
+# Last, any requests which do not match an Allow or a Deny directive are denied by default.
+#
+# Deny,Allow
+# First, all Deny directives are evaluated. If any match, the request is denied unless
+# it also matches an Allow directive. Any requests which do not match any Allow or Deny directives are permitted.
+#
+# *Match* -------------------- *Allow,Deny result* -------------------- *Deny,Allow result*
+# Match Allow only ----------- Request allowed ------------------------ Request allowed
+# Match Deny only ------------ Request denied ------------------------- Request denied
+# No match ------------------- Default to second directive: Denied ---- Default to second directive: Allowed
+# Match both Allow & Deny ---- Final match controls: Denied ----------- Final match controls: Allowed
+#
+# NOTE: The zip file extension can be added to block remote access or execution of zip files, several plugins create
+# create either temporary or permanent zip files in the uploads folder. This may block those plugins from being
+# able to create zip files in your uploads folder.
+#
+# FORBID THESE FILE EXTENSIONS FROM BEING ACCESSED OR EXECUTED REMOTELY
+<FilesMatch "\.(7z|as|bat|bin|cgi|chm|chml|class|cmd|com|command|dat|db|db2|db3|dba|dll|DS_Store|exe|gz|hta|htaccess|htc|htm|html|html5|htx|idc|ini|ins|isp|jar|jav|java|js|jse|jsfl|json|jsp|jsx|lib|lnk|out|php|phps|php5|php4|php3|phtml|phpt|pl|py|pyd|pyc|pyo|rar|shtm|shtml|sql|swf|sys|tar|taz|tgz|tpl|vb|vbe|vbs|war|ws|wsf|xhtml|xml|z)$">
+Order Deny,Allow
+Deny from all
+#Allow from example.com
+</FilesMatch>
+
+# FORBID PHP FILES DISGUISED AS AN IMAGE FILE - example.php.jpg - example.PHP.jpg
+<FilesMatch "\.(php|PHP|\.+(php)|\.+(PHP)).*$">
+Order Deny,Allow
+Deny from all
+#Allow from example.com
+</FilesMatch>

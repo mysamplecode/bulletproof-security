@@ -1,0 +1,39 @@
+##There are 5 things that cannot be changed in .htaccess files using php_flag and php_value
+##and can only be changed in a php.ini file or the httpd.conf Server file.
+##allow_url_fopen, disable_functions, expose_php, report_memleaks and mysql.allow_persistent
+
+##You can use these directives by uncommenting them
+##php_value memory_limit 128M
+##php_value post_max_size 20M
+##php_value upload_max_filesize 20M
+##php_flag file_uploads = On
+##php_value date.timezone America/Los_Angeles
+
+php_flag asp_tags = Off
+php_flag allow_call_time_pass_reference = Off  
+##php_flag allow_url_fopen = Off
+php_flag allow_url_include = Off
+php_flag define_syslog_variables = Off
+##php_value disable_functions system, exec, passthru, shell_exec, show_source, popen, pclose, pcntl_exec
+php_flag display_errors = Off
+php_flag display_startup_errors = Off
+##php_flag expose_php = Off
+php_flag ignore_repeated_errors = On
+php_flag ignore_repeated_source = Off
+php_flag implicit_flush = Off
+php_value max_execution_time 30
+php_value max_input_time 60
+php_flag magic_quotes_gpc = Off
+php_flag magic_quotes_runtime = Off
+php_flag output_buffering = Off
+php_flag register_globals = Off
+php_flag register_long_arrays = Off
+php_flag register_argc_argv = Off
+##php_flag report_memleaks = On
+php_flag safe_mode = Off
+php_flag sql.safe_mode = Off
+php_value variables_order GPCS
+
+##php_flag mysql.allow_persistent = Off
+php_flag mysql.trace_mode = Off
+php_value mysql.connect_timeout 30

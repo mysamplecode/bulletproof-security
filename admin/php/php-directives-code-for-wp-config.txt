@@ -1,0 +1,62 @@
+// PHP directive ini_set settings that you can add to your wp-config.php file
+// Copy and paste this code below directly after /* That's all, stop editing! Happy blogging. */
+// in your wp-config.php file.
+// Add the actual path to your php error log. It is recommended that you use the /bps-backup/logs/ folder.
+
+/* That's all, stop editing! Happy blogging. */
+
+/** BEGIN BPS Pro ini_set Settings **/
+
+@error_reporting(E_ALL|E_STRICT);
+
+@ini_set('log_errors','On');
+
+@ini_set('error_log','/your-actual-website-folder-path/wp-content/bps-backup/logs/bps_php_error.log'); // add the path to your php error log
+
+@ini_set('log_errors_max_len','1024');
+
+@ini_set('memory_limit','128M');
+
+@ini_set('session.cookie_httponly','On');
+
+@ini_set('session.use_only_cookies','On');
+
+@ini_set('session.cookie_secure','Off');
+
+@ini_set('ignore_repeated_errors','On');
+
+@ini_set('ignore_repeated_source','Off');
+
+@ini_set('allow_url_include','Off');
+
+@ini_set('define_syslog_variables','Off');
+
+@ini_set('display_errors','Off');
+
+@ini_set('display_startup_errors','Off');
+
+@ini_set('implicit_flush','Off');
+
+@ini_set('magic_quotes_runtime','Off');
+
+@ini_set('max_execution_time','30');
+
+@ini_set('mysql.connect_timeout','30');
+
+@ini_set('mysql.trace_mode','Off');
+
+@ini_set('report_memleaks','On');
+
+/** END BPS Pro ini_set Settings **/
+
+
+
+
+
+
+
+
+
+
+
+

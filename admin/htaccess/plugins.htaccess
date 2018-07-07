@@ -1,0 +1,46 @@
+# BULLETPROOF PRO .HTACCESS PLUGIN FIREWALL     
+# 
+# Allow,Deny
+# First, all Allow directives are evaluated. At least one must match, or the request is rejected.
+# Next, all Deny directives are evaluated. If any matches, the request is rejected.
+# Last, any requests which do not match an Allow or a Deny directive are denied by default.
+#
+# Deny,Allow
+# First, all Deny directives are evaluated. If any match, the request is denied unless
+# it also matches an Allow directive. Any requests which do not match any Allow or Deny directives are permitted.
+#
+# *Match* -------------------- *Allow,Deny result* -------------------- *Deny,Allow result*
+# Match Allow only ----------- Request allowed ------------------------ Request allowed
+# Match Deny only ------------ Request denied ------------------------- Request denied
+# No match ------------------- Default to second directive: Denied ---- Default to second directive: Allowed
+# Match both Allow & Deny ---- Final match controls: Denied ----------- Final match controls: Allowed
+#
+# THE Order MUST BE: Order Allow,Deny and CANNOT be Order Deny,Allow in order to work correctly.
+# YOU MUST HAVE ALL 3: Domain name, Server IP Address and Public IP / Your Computer IP Address to work correctly.
+# Your Public IP Address is automatically updated in this file when or if it changes.
+#
+# Payment Gateway Providers and adding additional whitelist rules: 
+# The Plugin Firewall Whitelist Tool on the Security Modes page has checkboxes
+# to Whitelist popular Payment Gateway Providers. If you have additional Payment Providers you would like
+# to add to your Firewall Whitelist you can add additional Whitelist rules for additional Payment Providers, 
+# domains/websites and IP addresses that you want to whitelist using the "Allow from" Whitelist rules Tool
+# under the Additional Whitelist Tools accordian tab. Click the Plugin Firewall Blue Read Me help button
+# for additional details and examples. 
+# 
+# BEGIN WHITELIST: Frontend Loading Website Plugin scripts/files
+SetEnvIf Request_URI "/bulletproof-security/400.php$" whitelist
+SetEnvIf Request_URI "/bulletproof-security/403.php$" whitelist
+SetEnvIf Request_URI "/hello.php$" whitelist
+# END WHITELIST
+#
+# FORBID REMOTE ACCESS TO THESE PLUGIN FILE TYPES FROM ANYONE EXCEPT YOU
+# Whitelist Exceptions: Payment Gateway Provider domain names and/or Whitelisted Plugin scripts/files ONLY
+<FilesMatch "\.(7z|as|bat|bin|cgi|chm|chml|class|cmd|com|command|dat|db|db2|db3|dba|dll|DS_Store|exe|gz|hta|htaccess|htc|htm|html|html5|htx|idc|ini|ins|isp|jar|jav|java|js|jse|jsfl|json|jsp|jsx|lib|lnk|out|php|phps|php5|php4|php3|phtml|phpt|pl|py|pyd|pyc|pyo|rar|shtm|shtml|sql|swf|sys|tar|taz|tgz|tpl|txt|vb|vbe|vbs|war|ws|wsf|xhtml|z|zip)$">
+Order Allow,Deny
+Allow from env=whitelist
+Allow from aitpro.local
+Allow from 127.0.0.1
+# BEGIN PUBLIC IP
+Allow from 127.0.0.1
+# END PUBLIC IP
+</FilesMatch>
